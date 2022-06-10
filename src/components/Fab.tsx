@@ -1,0 +1,59 @@
+import React from 'react'
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+
+//estableces que propiedades puede recibir este componente
+interface Props {
+    title: string,
+    onPress: () => number,
+    position: 'br' | 'bl'
+}
+export const Fab = (props: Props) => {
+
+    console.log(props.title);
+
+    return (
+        <TouchableOpacity
+            style={[styles.fabLocation, (props.position === 'br') ? styles.right : styles.left]}
+            onPress={props.onPress}
+        >
+            <View style={styles.fab}>
+                <Text style={styles.fabText}>{props.title}</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
+const styles = StyleSheet.create({
+    fabLocation: {
+        position: 'absolute',
+        bottom: 25,
+    },
+    right: {
+        right: 25
+    },
+    left: {
+        left: 25
+    },
+    fab: {
+        backgroundColor: '#5856D6',
+        width: 60,
+        height: 60,
+        borderRadius: 100,
+        justifyContent: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
+    fabText: {
+        color: 'white',
+        fontSize: 25,
+        fontWeight: 'bold',
+        alignSelf: 'center'
+    }
+})
